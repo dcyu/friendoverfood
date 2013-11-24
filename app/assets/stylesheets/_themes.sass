@@ -1,0 +1,78 @@
+// fonts
+
+
+$century: "Century Gothic", sans-serif
+$sans: "Tahoma", sans-serif
+$slab: "Crete Round", Rockwell, serif
+
+.t-century
+  font-family: $century
+
+.t-underline
+  text-decoration: underline
+
+// colors
+$dark_blue: #00507F
+$medium_blue: #007cc3
+
+
+$aqua: #3FB4C2
+$orange: #e77817
+$red: #da251d
+
+
+$medium_green: #84c225
+
+$light_grey: #f3f1ee
+$medium_grey: #a1adb3
+$dark_grey: #555b5f
+
+.t-orange
+  color: $orange
+
+.t-medium_blue
+  color: $medium_blue
+
+.t-dark_blue
+  color: $dark_blue
+
+.t-medium_grey
+  color: $medium_grey
+
+.t-dark_grey
+  color: $dark_grey
+
+
+.t-white
+  color: #fff
+
+.t-box-shadow
+  +box-shadow(0 0 5px $dark_blue)
+
+.t-border-bottom
+  border-bottom: 2px solid $orange
+
+// backgrounds
+
+.t-paper-bg
+  background: url("paper_fibers.png")
+
+.t-grid-noise
+  background: url("grid_noise.png")
+
+.t-debut
+  background: url("debut_light_@2X.png")
+
+.t-white-bg
+  background: #fff
+
+.t-medium_blue-bg
+  background: $medium_blue
+
+
+// effects
+
+.t-hover
+  +transition(0.2s)
+  &:hover
+    +transform(scale(1.2))

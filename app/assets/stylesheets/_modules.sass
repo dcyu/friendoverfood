@@ -1,0 +1,137 @@
+// alerts
+
+#flash_alert, #flash_notice
+  position: absolute
+  top: 55px
+  left: 10px
+
+// buttons
+
+input[type="submit"]
+  border: none
+  border-radius: 0
+  padding: 0.8em
+  color: #fff
+  background: $medium_blue
+  // +extend .on-hover
+  // +extend .is-enlarged
+
+.wide-btn input
+  width: 100%
+
+// header
+
+.logo
+
+// images
+
+.team-member-img
+  width: 150px
+  height: auto
+
+  
+// main
+
+.admin-table
+  td
+    padding: 5px 30px 0 0
+    text-align: left
+  th
+    text-align: left
+    padding: 5px 30px 0 0
+
+
+article.featured
+  .sign-in, .sign-up
+    width: 340px
+  h2
+    padding-top: 0
+  section
+    width: 280px
+    float: left
+    &.wide
+      width: 400px
+      margin: 0 20px
+      h2
+        margin: 0.8em
+        padding: 0 0 0.2em 0
+      h3
+        margin: 0 1em 0.8em 1em
+        padding: 0
+      ul
+        list-style-type: disc
+        margin-left: 20px
+    h2
+      padding: 0.5em 1em
+      margin: 0
+    h3
+      font-size: 1.3em
+      padding: 1em
+      margin: 0
+
+.center-box
+  display: table
+  margin: 0 auto 2em auto
+  section:last-child
+    margin-right: 0 
+  .arrow
+    width: auto
+    font-size: 1em
+    span
+      padding: 1em 0
+      font-size: 5em
+
+.copyright
+  font-size: 1em
+  line-height: 70px
+  margin: 0 0 0 30px
+  padding: 0
+
+.down-arrow
+  position: absolute
+  top: 96%
+  width: 100%
+  overflow: hidden
+  color: $medium_blue
+
+.sign-in, .sign-up
+  float: left
+  margin: 3em 0 0 0
+  &.border-right
+    border-right: 2px solid $dark_blue
+    padding-right: 70px
+    margin-right: 70px
+  h2
+    padding: 1em 0
+  .other-signup
+    margin-bottom: 2em
+
+.team-member-bio
+  width: 700px
+  margin-left: 50px
+  strong
+    display: block
+    margin-top: 1em
+  p
+    font-size: 1em
+    margin-top: 1em
+
+
+.title
+  margin: 80px 0 0 0
+  padding: 0.5em
+  display: inline-block
+  background: rgb(255,255,255) /* IE8 Fallback*/
+  background: rgba(255,255,255,0.8)
+  border-radius: 10px
+  text-shadow: 0 0 20px #fff
+  &.landing
+    margin-left: 50px
+  &.sub
+    color: $orange
+    position: absolute
+    left: 0
+    bottom: 20px
+    font-size: 2.5em
+  span
+    font-size: 0.8em

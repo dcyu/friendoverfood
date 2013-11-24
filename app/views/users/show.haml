@@ -4,9 +4,17 @@
   Hello
   = @user.first_name
 
+%p 
+  There are no new Ballers in 
+  = @user.city
+  to lunch with.
+
+%p
+  There are still Ballers in
+  =@user.city
+  that you haven't lunched with!
+
 
 = link_to 'Edit', edit_user_path(@user)
-
-= link_to 'Back', users_path
 
 = link_to "Sign out", sign_out_path

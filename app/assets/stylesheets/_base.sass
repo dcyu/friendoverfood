@@ -1,0 +1,87 @@
+html
+  width: 100%
+  height: 100%
+
+a
+  text-decoration: none
+  color: $medium_green
+  font-size: 1em
+
+
+b
+  line-height: 1.5em
+
+body 
+  font-size: 100%
+  font-family: $sans
+  height: 100%
+  width: 100%
+  position: absolute
+  top: 0
+  color: $medium_blue
+
+.clear
+  clear: both
+
+.clearfix:after
+  visibility: hidden
+  display: block
+  content: ""
+  clear: both
+  height: 0
+
+@import url(http://fonts.googleapis.com/css?family=Crete+Round)
+  
+h1, h2, h3, h4, h5, h6
+  font-family: $slab
+  font-weight: normal
+  line-height: 1.3em
+
+h1
+  font-size: 3em
+
+h2
+  font-size: 2em
+  margin: 0
+  padding: 1em
+  text-align: center
+
+img
+  border: 0px
+
+input, select
+  display: block
+  margin: 1em 0
+  padding: 0.4em
+  border: 1px solid $medium_grey
+  font-size: 20px
+  width: 320px
+  &[type=checkbox]
+    display: inline-block
+
+select
+  // height: 1.8em
+  width: 100%
+  background: #fff
+  &:hover
+    cursor: pointer
+
+strong
+  display: block
+
+p, strong
+  color: $dark_blue
+
+p
+  font-size: 1.2em
+  line-height: 1.3em
+  margin: 0
+  padding: 0 0 1em 0
+
+ul
+  list-style-type: none
+
+li
+  font-size: 1em
+  font-weight: bold
+
