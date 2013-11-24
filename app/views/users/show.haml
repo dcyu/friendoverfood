@@ -1,20 +1,24 @@
 %p#notice= notice
 
-%h1 
+%h1.is-ta-center 
   Hello
   = @user.first_name
 
+
+
+- if Lunch.where(luncher_id: nil, user_id: @user.id).length > 0
+  %p 
+    There are no new Ballers in 
+    = @user.city
+    to lunch with.
+- else
+  %p
+    There are still Ballers in
+    =@user.city
+    that you haven't lunched with!
+    = link_to "New Lunch", lunches_path, :method => :post
+
+= link_to 'Edit info', edit_user_path(@user)
+
 %p 
-  There are no new Ballers in 
-  = @user.city
-  to lunch with.
-
-%p
-  There are still Ballers in
-  =@user.city
-  that you haven't lunched with!
-
-
-= link_to 'Edit', edit_user_path(@user)
-
-= link_to "Sign out", sign_out_path
+  =  Lunch.where(luncher_id: nil).length

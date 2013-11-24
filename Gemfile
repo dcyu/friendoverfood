@@ -7,6 +7,7 @@ gem 'rails', '3.2.15'
 
 gem 'newrelic_rpm'
 gem 'cancan'
+gem 'figaro'
 
 group :development do
   gem 'sqlite3'

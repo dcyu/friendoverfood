@@ -16,11 +16,22 @@
 
       %nav.l-header-nav 
         %ul.l-header-nav.is-right
+          - if current_user
+            %li 
+              = link_to "#{current_user.first_name.downcase}", user_path(current_user.id)
+            %li
+              = link_to "sign out", sign_out_path
+          - else
+            %li 
+              %a{:href => "#{sign_in_path}"} sign in
+            %li 
+              %a{:href => "#{sign_up_path}"} sign up
           %li 
-            %a{:href => "#{sign_in_path}"} sign in
+            %a{:href => "#{contact_path}"} contact
           %li 
-            %a{:href => "#{sign_up_path}"} sign up
-    = yield
+            %a{:href => "#{about_path}"} about
+    .l-container.is-ta-center
+      = yield
     
     %footer.l-footer 
       %p 

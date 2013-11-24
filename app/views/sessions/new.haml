@@ -1,0 +1,11 @@
+%h2 Sign in
+= form_tag sessions_path do
+  = text_field_tag :email, params[:email], placeholder: "Email"
+  = password_field_tag :password, nil, placeholder: "Password"
+  %p.wide-btn= submit_tag "Log in"
+
+%section.sign-up 
+
+%h2 Don't have an account?
+%h2 
+  = link_to "Sign up here", sign_up_path
