@@ -1,0 +1,29 @@
+!!! 5
+%html
+  %head
+    %title BallerLunch
+    %link{:href => "http://fonts.googleapis.com/css?family=Josefin+Slab:400,700", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "http://fonts.googleapis.com/css?family=Raleway:400,700", :rel => "stylesheet", :type => "text/css"}/
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+
+    %header.l-header.clearfix
+      %a.logo.is-left{:href => "#{root_path}"} 
+        %span.t-orange> BALLER
+        %span.t-dark_blue> LUNCH 
+
+      %nav.l-header-nav 
+        %ul.l-header-nav.is-right
+          %li 
+            %a{:href => "#{sign_in_path}"} sign in
+          %li 
+            %a{:href => "#{sign_up_path}"} sign up
+    = yield
+    
+    %footer.l-footer 
+      %p 
+        Site created and designed by
+        %a{:href => "http://danielyu.me/"} Daniel Yu
+

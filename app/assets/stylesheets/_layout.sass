@@ -1,53 +1,24 @@
 // header
 .l-header
-  position: absolute
-  top: 0
-  height: 50px
-  background: rgb(255,255,255) /* IE8 Fallback*/
-  background: rgba(255,255,255,0.9)
-  width: 100%
-  // border-bottom: 2px solid $dark_blue
-  +box-shadow(0 0 10px $dark_blue)
+  border-bottom: 2px solid $dark_blue
   z-index: 5
   margin-bottom: 100px
-  img
-    float: left
-    display: block
-    height: 40px
-    margin: 0
-    padding: 5px 10px 5px 30px
-    line-height: 65px
-  .motto
-    font-family: Arial, sans-serif
-    font-weight: bold
-    color: $medium_blue
-    font-size: 20px
-    line-height: 50px
-    margin: 0 0 0 30px
-    padding: 0
 
 .l-header-nav
   ul
     padding: 0
     margin: 0
     float: right
-    height: 50px
     li
-      display: inline-block
-      border-left: 2px solid #aaa
       margin: 0
       padding: 0 15px
       float: right
       a
         font-weight: normal
-        line-height: 50px
-        margin: 0
+        margin: 1.5em 0 0 0
         padding: 0
         display: block
         text-align: center
-        color: $medium_blue
-        &:hover
-          color: $medium_green
 
 // main
 
@@ -115,14 +86,9 @@
 // footer
 
 .l-footer
-  background: $dark_blue
-  color: #fff
-  width: 100%
-  .logo
-    float: left
-    height: 50px
-    padding: 10px 30px
-    margin: 0
+  position: absolute
+  bottom: 0px
+  right: 20px
 
 .l-footer-nav
   padding: 0
