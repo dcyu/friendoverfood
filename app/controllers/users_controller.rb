@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   # before filter to load the resource into an instance variable and authorize it for every action
-  load_and_authorize_resource
+  # load_and_authorize_resource
 
   def verify
     @user = User.find(params[:id])
@@ -34,6 +34,9 @@ class UsersController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @user }
     end
+
+    authorize! :manage, @user
+
   end
 
   def lunch_confirmation
@@ -54,6 +57,9 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+
+    authorize! :manage, @user
+
   end
 
   # POST /users
