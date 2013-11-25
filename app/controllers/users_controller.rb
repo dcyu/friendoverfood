@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  # before filter to load the resource into an instance variable and authorize it for every action
+  load_and_authorize_resource
 
   def verify
     @user = User.find(params[:id])

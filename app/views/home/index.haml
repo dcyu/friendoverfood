@@ -4,7 +4,7 @@
 
 
 .is-block.is-ta-center
-  - unless current_user
+  - unless (current_user) || (current_admin)
     %a.call-to-action{:href => "#{sign_up_path}"} Sign up. 
     %a.call-to-action{:href => "#{sign_in_path}"} Sign in. 
 

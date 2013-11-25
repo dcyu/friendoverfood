@@ -1,4 +1,6 @@
-class AdminsController < ApplicationController
+class AdminsController < ApplicationController 
+  load_and_authorize_resource
+
 
   def index
     @admins = Admin.all
@@ -12,7 +14,8 @@ class AdminsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @admin }
-    end
+    end    
+
   end
 
   # GET /admins/new

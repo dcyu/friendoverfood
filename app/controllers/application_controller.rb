@@ -54,5 +54,29 @@ class ApplicationController < ActionController::Base
   def new_lunch_partners
     new_lunch_partners = open_lunchers - previous_lunch_partners
   end
+
+  # Cancan errors
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = "Access denied."
+    redirect_to root_url
+  end
+
+  # overriding CanCan::ControllerAdditions
+
+  def current_account
+    if current_user
+      current_account = current_user
+    elsif current_admin
+      current_account = current_admin
+    end
+  end
+
+  def current_ability
+    if current_account.kind_of?(Admin)
+      @current_ability ||= AdminAbility.new(current_account)
+    else
+      @current_ability ||= UserAbility.new(current_account)
+    end
+  end
   
 end
