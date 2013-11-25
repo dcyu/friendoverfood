@@ -20,14 +20,14 @@ class AdminsController < ApplicationController
 
   # GET /admins/new
   # GET /admins/new.json
-  def new
-    @admin = Admin.new
+  # def new
+  #   @admin = Admin.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @admin }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html # new.html.erb
+  #     format.json { render json: @admin }
+  #   end
+  # end
 
   # GET /admins/1/edit
   def edit
