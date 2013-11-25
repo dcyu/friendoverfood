@@ -1,24 +1,32 @@
 %p#notice= notice
 
-%h1.is-ta-center 
-  Hello
-  = @user.first_name
+- if @user.is_verified
+  %h1.is-ta-center 
+    Hello
+    = @user.first_name
 
 
+  - if (Lunch.where(luncher_id: nil, user_id: @user.id).length > 0)
 
-- if Lunch.where(luncher_id: nil, user_id: @user.id).length > 0
-  %p 
-    There are no new Ballers in 
-    = @user.city
-    to lunch with.
+    %p 
+      There are no new Ballers in 
+      = @user.city
+      to lunch with.
+  - else
+    %p
+      There are still Ballers in
+      =@user.city
+      that you haven't lunched with!
+
+      = link_to "Find a new lunch!", lunches_path, class: "submit", :method => :post
+
+  = link_to 'Edit your info', edit_user_path(@user)
+
+
 - else
-  %p
-    There are still Ballers in
-    =@user.city
-    that you haven't lunched with!
-    = link_to "New Lunch", lunches_path, :method => :post
+  %p.l-first.is-ta-center
+    Your registration is currently being verified. Once it's verified you will receive an email notification.
 
-= link_to 'Edit info', edit_user_path(@user)
-
-%p 
-  =  Lunch.where(luncher_id: nil).length
+  %p.is-ta-center
+    In the meantime, you may still
+    %a{:href => "#{edit_user_path}"} edit your info.

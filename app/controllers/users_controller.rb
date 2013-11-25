@@ -1,14 +1,25 @@
 class UsersController < ApplicationController
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @users }
-    end
+  def verify
+    User.find(params[:id]).update_attribute(:is_verified, true)
+    redirect_to :back
   end
+
+  def unverify
+    User.find(params[:id]).update_attribute(:is_verified, false)
+    redirect_to :back
+  end
+  
+  # # GET /users
+  # # GET /users.json
+  # def index
+  #   @users = User.all
+
+  #   respond_to do |format|
+  #     format.html # index.html.erb
+  #     format.json { render json: @users }
+  #   end
+  # end
 
   # GET /users/1
   # GET /users/1.json
@@ -48,6 +59,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        UserMailer.admin_verification(@user).deliver
         session[:user_id] = @user.id
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
@@ -73,6 +85,7 @@ class UsersController < ApplicationController
       end
     end
   end
+
 
   # DELETE /users/1
   # DELETE /users/1.json

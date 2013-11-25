@@ -1,8 +1,9 @@
 %h1.title.is-ta-center Welcome to Baller Lunch
 
-%h2.subtitle.is-ta-center Meet Ballers individually in your city for lunch 
+%h2.subtitle.is-ta-center Meet Ballers individually in your city and create meaningful relationships
 
 .is-block.is-ta-center
-  %a.call-to-action{:href => "#{sign_up_path}"} Sign up. 
-  %a.call-to-action{:href => "#{sign_in_path}"} Sign in. 
+  - unless current_user
+    %a.call-to-action{:href => "#{sign_up_path}"} Sign up. 
+    %a.call-to-action{:href => "#{sign_in_path}"} Sign in. 
 

@@ -1,0 +1,15 @@
+= form_for @admin do |f|
+  - if @admin.errors.any?
+    .error_messages
+      %h2 Form is invalid
+      %ul
+        - for message in @admin.errors.full_messages
+          %li= message
+
+  .field
+    = f.text_field :email, placeholder: "Email"
+  .field
+    = f.password_field :password, placeholder: "Password"
+  .field
+    = f.password_field :password_confirmation, placeholder: "Confirm Password"
+  .actions= f.submit

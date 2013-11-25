@@ -1,0 +1,43 @@
+%p#notice= notice
+
+.admin
+  %h1 All Users
+
+  %table.admin-table
+    %tr
+      %th First Name
+      %th Last Name
+      %th City
+      %th.email 
+        %a.toggle-email{:href => "#"} 
+          Email
+      %th
+      %th
+      %th
+      %th
+    - @users.each do |user|
+      %tr
+        %td= user.first_name
+        %td= user.last_name
+        %td= user.city
+        %td.email= user.email
+        %td= link_to 'View', user
+        %td= link_to 'Edit', edit_user_path(user)
+        %td= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }
+        %td
+          - if (user.is_verified == nil) || (user.is_verified == false)
+            = link_to 'Verify', verify_user_path(user), method: :post
+          - elsif user.is_verified == true
+            = link_to 'Unverify', unverify_user_path(user), method: :post
+
+
+
+:javascript
+  $(".toggle-email").click(function(e){
+    e.preventDefault();
+    $("td").toggle();
+    $("th").toggle();
+    $(".email").show();
+  });
+
+

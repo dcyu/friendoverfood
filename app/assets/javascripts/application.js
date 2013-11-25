@@ -13,3 +13,32 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(document).ready(function(){
+
+
+  // Clear the console
+  console.clear();
+   
+  // Plugin
+  (function ($) {
+  $.fn.antispam = function () {
+  return this.each(function () {
+  var $self = $(this);
+  // Get the text
+  var text = $self.text();
+  // Replace "at" and "dot"
+  var email = text.replace(" at ", "@").replace(" dot ", ".");
+  // Create a link
+  var $link = $("<a></a>");
+  $link.attr("href", "mailto:" + email);
+  $link.text(email);
+  // Replace the span with the link
+  $self.html( $link );
+  });
+  };
+  })(jQuery);
+   
+  $(".antispam").antispam();
+
+});

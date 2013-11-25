@@ -11,6 +11,8 @@
   .field
     = f.text_field :last_name, placeholder: "Last Name"
   .field
+    = f.select :city, [["New York City", "New York City"], ["Chicago", "Chicago"], ["San Francisco", "San Francisco"]]
+  .field
     = f.text_field :email, placeholder: "Email"
   .field
     = f.password_field :password, placeholder: "Password"

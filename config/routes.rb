@@ -1,7 +1,15 @@
 BallerLunch::Application.routes.draw do
+
+  resources :admins do
+    member do
+    end
+  end
+
   resources :users do
     member do
       get :lunch_confirmation
+      post 'verify'
+      post 'unverify'
     end
   end
 
@@ -16,6 +24,7 @@ BallerLunch::Application.routes.draw do
 
   match 'contact' => 'home#contact'
   match 'about' => 'home#about'
+  match 'faq' => 'home#faq'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
