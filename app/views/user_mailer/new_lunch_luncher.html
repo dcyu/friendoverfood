@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Hi <%= @luncher.first_name %>!</p>
+
+    <p>Your next Baller Lunch is with <strong><%= @user.first_name %> <%= @user.last_name %></strong>. Go ahead and email <%= @user.first_name %> at <strong><%= @user.email %></strong> and schedule a time to do lunch. Have fun!</p>
+
+    <p>Once you're done with that lunch feel free to find more lunches <a href="<%= @url %>">here</a>.</p>
+
+    <br>
+    <p>Cheers,</p>
+    <p>Baller Lunch</p>
+
+  </body>
+</html>

@@ -20,15 +20,12 @@ class ApplicationController < ActionController::Base
     @current_admin ||= Admin.find(session[:admin_id]) if session[:admin_id]
   end
 
-
-
-
   def user_lunches
     Lunch.where{ (luncher_id == my{current_user.id}) | (user_id == my{current_user.id}) }
   end
 
   def open_lunches
-    Lunch.where(luncher_id: nil)
+    Lunch.where(luncher_id: nil, city: current_user.city)
   end
 
   def open_lunchers

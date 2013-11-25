@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
 
   def verify
-    User.find(params[:id]).update_attribute(:is_verified, true)
+    @user = User.find(params[:id])
+    @user.update_attribute(:is_verified, true)
+    UserMailer.verified_user(@user).deliver
     redirect_to :back
   end
 
@@ -60,6 +62,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         UserMailer.admin_verification(@user).deliver
+        UserMailer.welcome(@user).deliver
         session[:user_id] = @user.id
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
