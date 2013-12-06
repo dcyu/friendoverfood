@@ -1,5 +1,14 @@
 BallerLunch::Application.routes.draw do
 
+  resources :clubs do
+    member do
+      post 'join'
+      post 'approve_membership'
+      post 'deny_membership'
+    end
+  end
+
+
   resources :admins do
     member do
     end
@@ -19,8 +28,6 @@ BallerLunch::Application.routes.draw do
   get "sign_out" => "sessions#destroy", :as => "sign_out"
   get "sign_in" => "sessions#new", :as => "sign_in"
   get "sign_up" => "users#new", :as => "sign_up"
-
-
 
   match 'contact' => 'home#contact'
   match 'about' => 'home#about'
@@ -74,7 +81,12 @@ BallerLunch::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
+
+  # if current_user
+  #   root :to => user_path(current_user.id)
+  # else
   root :to => 'home#index'
+  # end
 
   # See how all your routes lay out with "rake routes"
 

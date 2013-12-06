@@ -55,6 +55,11 @@ class ApplicationController < ActionController::Base
     new_lunch_partners = open_lunchers - previous_lunch_partners
   end
 
+  def clubs_with_open_lunches_for_current_user
+    clubs_with_open_lunches = current_user.lunches.where(luncher_id: nil, user_id: current_user.id).map {|lunch| lunch.club}
+
+    current_user.clubs - clubs_with_open_lunches
+  end
   # Cancan errors
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = "Access denied."

@@ -1,21 +1,21 @@
 !!! 5
 %html
   %head
-    %title Not Baller Lunch
-    %meta{:content => "Not Baller Lunch", :property => "og:title"}
-    %meta{:content => "http://www.ballerlunch.com/", :property => "og:url"}
+    %title Friend Over Food
+    %meta{:content => "Friend Over Food", :property => "og:title"}
+    %meta{:content => "http://www.friendoverlunch.com/", :property => "og:url"}
     %meta{:content => "#{root_url[0...-1]}#{image_path("og.png")}", :property => "og:image"}
-    %meta{:content => "Not Baller Lunch", :property => "og:site_name"}
-    %meta{:content => "Not Baller Lunch", :property => "og:description"}
-    %meta{:content => "Not Baller Lunch", :itemprop => "name"}
-    %meta{:content => "Not Baller Lunch", :itemprop => "description"}
+    %meta{:content => "Friend Over Food", :property => "og:site_name"}
+    %meta{:content => "Friend Over Food", :property => "og:description"}
+    %meta{:content => "Friend Over Food", :itemprop => "name"}
+    %meta{:content => "Friend Over Food", :itemprop => "description"}
     %meta{:content => "summary", :name => "twitter:card"}
-    %meta{:content => "Not Baller Lunch", :name => "twitter:title"}
-    %meta{:content => "Not Baller Lunch", :name => "twitter:description"}
-    %meta{:content => "Not Baller Lunch", :name => "description"}
+    %meta{:content => "Friend Over Food", :name => "twitter:title"}
+    %meta{:content => "Friend Over Food", :name => "twitter:description"}
+    %meta{:content => "Friend Over Food", :name => "description"}
     %meta{:content => "", :name => "keywords"}
     %meta{:name => "mode"}/
-    %meta{:content => "ballerlunch", :name => "permalink"}/
+    %meta{:content => "friendoverlunch", :name => "permalink"}/
     %link{:href => "http://fonts.googleapis.com/css?family=Josefin+Slab:400,700", :rel => "stylesheet", :type => "text/css"}/
     %link{:href => "http://fonts.googleapis.com/css?family=Raleway:400,700", :rel => "stylesheet", :type => "text/css"}/
     = favicon_link_tag 'fav.png'
@@ -26,9 +26,9 @@
 
     %header.l-header.clearfix
       %a.logo.is-left{:href => "#{root_path}"} 
-        %span.t-dark_blue> NOT 
-        %span.t-orange> BALLER
-        %span.t-dark_blue> LUNCH 
+        %span.t-medium_blue> FRIEND 
+        %span.t-orange> OVER
+        %span.t-medium_blue> FOOD 
 
       %nav.l-header-nav 
         %ul.l-header-nav.is-right
@@ -54,12 +54,14 @@
           %li 
             %a{:href => "#{about_path}"} about
     .l-container.is-ta-center
+      - if flash[:notice]
+        %p#notice= flash[:notice]
+
       = yield
     
     %footer.l-footer 
       %p 
-        Site created and designed by
-        %a{:href => "http://danielyu.me/"} Daniel Yu
+        ©2013 Friend Over Food, All Rights Reserved 
 
   / Google Analytics
   :javascript
@@ -68,6 +70,6 @@
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-45975377-1', 'ballerlunch.com');
+  ga('create', 'UA-45975377-1', 'friendoverlunch.com');
   ga('send', 'pageview');
 

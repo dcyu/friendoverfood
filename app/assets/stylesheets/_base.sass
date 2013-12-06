@@ -4,12 +4,12 @@ html
 
 a
   text-decoration: none
-  color: $orange
+  color: $medium_blue
   font-size: 1em
   display: inline-block
   +transition(0.1s) 
   &:hover
-    +transform(scale(1.05))
+    color: scale-lightness($medium_blue, 15%)
 
 b
   line-height: 1.5em
@@ -21,7 +21,7 @@ body
   width: 100%
   position: absolute
   top: 0
-  color: $medium_blue
+  color: $orange
 
 .clear
   clear: both
@@ -32,9 +32,13 @@ body
   content: ""
   clear: both
   height: 0
-
-@import url(http://fonts.googleapis.com/css?family=Crete+Round)
   
+form
+  label
+    font-size: 1.2em
+    display: block
+    text-align: left
+
 h1, h2, h3, h4, h5, h6
   font-family: $slab
   font-weight: bold
@@ -53,7 +57,7 @@ h2
 img
   border: 0px
 
-input, select
+input, select, textarea
   display: block
   margin: 1em 0
   padding: 0.4em
@@ -62,7 +66,7 @@ input, select
   width: 320px
   &[type=checkbox]
     display: inline-block
-  &[type=submit]
+  &[type=submit]  
 
 
 select

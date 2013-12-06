@@ -1,0 +1,55 @@
+%h1 
+  = @club.name
+
+%p 
+  = @club.description
+
+%h2 Club Admins
+
+- @club.memberships.where(is_admin: true).each do |m|
+  %p.club-member 
+    %strong= m.user.first_name + ' ' + m.user.last_name
+
+%h2 Club Members
+
+- @club.memberships.where(is_admin: nil).each do |m|
+  %p.club-member 
+    %strong
+      = m.user.first_name + ' ' + m.user.last_name
+    %span 
+      \|
+    %a{:href => "#"} Remove
+    %span 
+      \|
+    %a{:href => "#"} Make Admin
+
+%br/ 
+%br/ 
+
+%p 
+  %a{:href => "#"} 
+    Invite people to join #{@club.name}!
+
+- if @current_user_membership != nil && @current_user_membership.is_admin == true && @club.pending_memberships.length > 0
+
+  %h2 Pending Members
+
+  - @club.pending_memberships.each do |p|
+    %p.club-member 
+      %strong
+        = p.user.first_name + ' ' + p.user.last_name
+      %span 
+        \|
+      = link_to 'Approve Membership', approve_membership_club_path(p), method: :post
+      %span 
+        \|
+      = link_to 'Deny Membership', deny_membership_club_path(p), method: :post
+
+
+%br/ 
+%br/ 
+= link_to 'Join', join_club_path(@club), method: :post
+\|
+= link_to 'Edit', edit_club_path(@club)
+\|
+= link_to 'All Clubs', clubs_path

@@ -1,6 +1,33 @@
 %h1 Sign Up
-%p Sign ups are currently limited to members of the Baller Facebook group and will be verified. 
+%p Sign ups are currently limited to members of approved clubs. 
+%p After submitting your registration, your membership will be verified by the club admin.
 
 .center-box
   .is-inline-block
-    = render 'form'
+    = form_for @user do |f|
+      - if @user.errors.any?
+        .error_messages
+          %h2 Form is invalid
+          %ul
+            - for message in @user.errors.full_messages
+              %li= message
+
+      .field
+        = f.text_field :first_name, placeholder: "First Name"
+      .field
+        = f.text_field :last_name, placeholder: "Last Name"
+
+      .field
+        = f.fields_for :pending_memberships do |m|
+          = m.label :club_id, "Select your club."
+          = m.collection_select :club_id, Club.all, :id, :name
+      / .field
+      / = f.select :city, [["New York City", "New York City"], ["Chicago", "Chicago"], ["San Francisco", "San Francisco"]]
+      .field
+        = f.text_field :email, placeholder: "Email"
+
+      .field
+        = f.password_field :password, placeholder: "Password"
+      .field
+        = f.password_field :password_confirmation, placeholder: "Confirm Password"
+      .actions= f.submit

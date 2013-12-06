@@ -1,32 +1,27 @@
-%p#notice= notice
+%h1.is-ta-center 
+  Hi
+  = @user.first_name
 
-- if @user.is_verified
-  %h1.is-ta-center 
-    Hello
-    = @user.first_name
-
-
-  - if (Lunch.where(luncher_id: nil, user_id: @user.id, city: @user.city).length > 0)
-
-    %p 
-      There are no new Ballers in 
-      = @user.city
-      to lunch with.
-  - else
-    %p
-      There are still Ballers in
-      =@user.city
-      that you haven't lunched with yet!
-
-      = link_to "Find a new lunch!", lunches_path, class: "submit", :method => :post
-
-  = link_to 'Edit your info', edit_user_path(@user)
-
-
+- if (Lunch.where(luncher_id: nil, user_id: @user.id).length >= @user.clubs.length)
+  %p 
+    There are no new people in your clubs to lunch with.
 - else
-  %p.l-first.is-ta-center
-    Your registration is currently being verified. Once it's verified you will receive an email notification (be sure to check your spam folder).
+  %p
+    There are still people that you haven't lunched with yet!
 
-  %p.is-ta-center
-    In the meantime, you may still
-    %a{:href => "#{edit_user_path}"} edit your info.
+    = link_to "Find a new lunch!", lunches_path, class: "submit", :method => :post
+
+.clubs-list
+  %h2 YOUR CLUBS
+  - if @user.clubs.length == 0
+    %p Your club registration is currently being verified.
+  - else
+    - @user.clubs.each do |c|
+      %a.club{:href => "#{club_path(c.id)}"} 
+        = c.name
+  
+  %br/ 
+  %a.is-block{:href => "#{clubs_path}"} Join more clubs!
+
+%a.is-right{:href => "#{edit_user_path(@user)}"} 
+  Edit your info.

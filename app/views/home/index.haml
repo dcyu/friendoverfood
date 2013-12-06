@@ -1,10 +1,9 @@
-%h1.title.is-ta-center Welcome to Not Baller Lunch
+%h1.title.is-ta-center Welcome to Friend Over Food
 
-%h2.subtitle.is-ta-center Meet people who definitely aren't Ballers individually in your city and build meaningful relationships
+%h2.subtitle.is-ta-center Meet people individually through your interest groups and build meaningful friendships
 
 
 .is-block.is-ta-center
   - unless (current_user) || (current_admin)
-    %a.call-to-action{:href => "#{sign_up_path}"} Sign up. 
-    %a.call-to-action{:href => "#{sign_in_path}"} Sign in. 
+    %a.call-to-action{:href => "#{sign_in_path}"} Find a new lunch! 
 
