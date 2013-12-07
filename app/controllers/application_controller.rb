@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
 
   def open_lunches
-    Lunch.where(luncher_id: nil, city: current_user.city)
+    Lunch.where(luncher_id: nil, club_id: current_user.clubs)
   end
 
   def open_lunchers
@@ -63,7 +63,7 @@ class ApplicationController < ActionController::Base
   # Cancan errors
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = "Access denied."
-    redirect_to root_url
+    return root_url
   end
 
   # overriding CanCan::ControllerAdditions

@@ -6,13 +6,13 @@
   <body>
     <p>Hi <%= @luncher.first_name %>!</p>
 
-    <p>Your next Friend Over Food is with <strong><%= @user.first_name %> <%= @user.last_name %></strong>. Go ahead and email <%= @user.first_name %> at <strong><%= @user.email %></strong> and schedule a time to do lunch. Have fun!</p>
+    <p>Meet <strong><%= @user.first_name %> <%= @user.last_name %></strong> from <strong><%= @club.name %></strong>. Just reply here to email <%= @user.first_name %> at <strong><a href="mailto:<%= @user.email %>?subject=<%= @club.name %> Intro"><%= @user.email %></a></strong> and schedule a time to do lunch. Have fun!</p>
 
     <p>Once you're done with that lunch feel free to find more lunches <a href="<%= @url %>">here</a>.</p>
 
     <br>
     <p>Cheers,</p>
-    <p>Friend Over Food</p>
+    <p>Friend Over Food Team</p>
 
   </body>
 </html>

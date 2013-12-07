@@ -17,11 +17,13 @@
     %p Your club registration is currently being verified.
   - else
     - @user.clubs.each do |c|
-      %a.club{:href => "#{club_path(c.id)}"} 
-        = c.name
+      %p 
+        %a.club{:href => "#{club_path(c.id)}"} 
+          = c.name
   
   %br/ 
-  %a.is-block{:href => "#{clubs_path}"} Join more clubs!
+  %p 
+    %a.is-inline-block{:href => "#{clubs_path}"} Join more clubs!
 
 %a.is-right{:href => "#{edit_user_path(@user)}"} 
   Edit your info.

@@ -6,6 +6,8 @@
 
 %h2 Club Admins
 
+%p Admins are still a part of the lunch pool.
+
 - @club.memberships.where(is_admin: true).each do |m|
   %p.club-member 
     %strong= m.user.first_name + ' ' + m.user.last_name
@@ -18,17 +20,17 @@
       = m.user.first_name + ' ' + m.user.last_name
     %span 
       \|
-    %a{:href => "#"} Remove
+    = link_to 'Remove', membership_path(m), method: :delete
     %span 
       \|
-    %a{:href => "#"} Make Admin
+    = link_to "Make Admin", make_admin_membership_path(m), method: :post
+
 
 %br/ 
 %br/ 
 
 %p 
-  %a{:href => "#"} 
-    Invite people to join #{@club.name}!
+  = link_to "Invite people to join #{@club.name}", new_pending_membership_path(:club => @club.id), class: "t-bold"
 
 - if @current_user_membership != nil && @current_user_membership.is_admin == true && @club.pending_memberships.length > 0
 
@@ -37,7 +39,7 @@
   - @club.pending_memberships.each do |p|
     %p.club-member 
       %strong
-        = p.user.first_name + ' ' + p.user.last_name
+        = p.user_first_name + ' ' + p.user_last_name
       %span 
         \|
       = link_to 'Approve Membership', approve_membership_club_path(p), method: :post

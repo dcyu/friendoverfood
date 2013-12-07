@@ -27,6 +27,10 @@ class ClubsController < ApplicationController
     if current_user
       m = PendingMembership.new
       m.user_id = current_user.id
+      # Needed since some PendingMemberships don't have User IDs yet and this keeps view code consistent
+      m.user_first_name = current_user.first_name
+      m.user_last_name = current_user.last_name
+      m.user_last_email = current_user.email
       m.club_id = @club.id
       m.save
       flash[:notice] = "Request to join #{@club.name} submitted. You'll be notified once your request is approved."

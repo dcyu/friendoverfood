@@ -1,0 +1,25 @@
+%h1
+  %span.t-orange 
+    = @club.name
+  %br/ 
+  Invite New Members
+
+.center-box
+  .is-inline-block
+    = form_for @pending_membership do |f|
+      - if @pending_membership.errors.any?
+        .error_messages
+          %h2 Form is invalid
+          %ul
+            - for message in @pending_membership.errors.full_messages
+              %li= message
+
+      .field
+        = f.text_field :user_first_name, placeholder: "First Name"
+      .field
+        = f.text_field :user_last_name, placeholder: "Last Name"
+      .field
+        = f.text_field :user_email, placeholder: "Email"
+
+      = f.hidden_field :club_id, value: @club.id
+      .actions= f.submit "Invite"

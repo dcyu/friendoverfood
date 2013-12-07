@@ -24,6 +24,13 @@ BallerLunch::Application.routes.draw do
 
   resources :sessions
   resources :lunches
+
+  resources :pending_memberships
+  resources :memberships do
+    member do
+      post 'make_admin'
+    end
+  end
   
   get "sign_out" => "sessions#destroy", :as => "sign_out"
   get "sign_in" => "sessions#new", :as => "sign_in"

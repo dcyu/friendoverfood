@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "friendoverlunch@gmail.com"
+  default from: "newfriendoverlunch@gmail.com"
 
   def welcome(user)
     @user = user
@@ -25,7 +25,8 @@ class UserMailer < ActionMailer::Base
     @lunch = lunch
     @user = @lunch.user
     @luncher = User.find(@lunch.luncher_id)
-    mail(to: @user.email, subject: 'New Friend Over Food!')
+    @club = Club.find(@lunch.club_id)
+    mail(to: @user.email, subject: "Meet #{@luncher.first_name} from #{@club.name}", reply_to: @luncher.email)
   end
 
   def new_lunch_luncher(lunch)
@@ -33,7 +34,8 @@ class UserMailer < ActionMailer::Base
     @lunch = lunch
     @user = @lunch.user
     @luncher = User.find(@lunch.luncher_id)
-    mail(to: @luncher.email, subject: 'New Friend Over Food!')
+    @club = Club.find(@lunch.club_id)
+    mail(to: @luncher.email, subject: "Meet #{@user.first_name} from #{@club.name}", reply_to: @user.email)
   end
 
 
