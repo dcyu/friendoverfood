@@ -38,5 +38,13 @@ class UserMailer < ActionMailer::Base
     mail(to: @luncher.email, subject: "Meet #{@user.first_name} from #{@club.name}", reply_to: @user.email)
   end
 
+  def invitation(pending_membership)
+    @url = "http://www.friendoverlunch.com"
+    @sign_up_url = "http://www.friendoverlunch.com/sign_in"
+    @pending_membership = pending_membership
+    @inviter = User.find(@pending_membership.inviter_user_id)
+    @club = Club.find(@pending_membership.club_id)
+  end
+
 
 end

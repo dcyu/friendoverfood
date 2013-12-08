@@ -9,8 +9,9 @@
   - @clubs.each do |club|
     %tr
       %td
-        %a{:href => "#{club_path(club.id)}"} 
-          = club.name
+        %strong 
+          %a{:href => "#{club_path(club.id)}"} 
+            = club.name
       %td= club.description
       %td= link_to 'Join', join_club_path(club), method: :post
       %td= link_to 'Details', club
@@ -19,4 +20,5 @@
 
 %br
 
-= link_to 'Create New Club', new_club_path
+%strong 
+  = link_to 'Create New Club', new_club_path

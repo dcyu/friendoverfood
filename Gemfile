@@ -1,15 +1,12 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.15'
-gem 'newrelic_rpm'
+gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'newrelic_rpm'
 gem 'cancan'
-gem 'figaro'
-gem "squeel"
 
 group :development do
   gem 'sqlite3'
@@ -18,6 +15,10 @@ group :development do
   gem 'pry'
   gem 'rspec-rails'
   gem "factory_girl_rails"
+  gem 'guard-rspec', :require => false
+  gem 'guard-livereload', :require => false
+  gem 'rack-livereload'
+  gem 'rb-fsevent', :require => false
 end
 
 group :test do
@@ -25,8 +26,13 @@ group :test do
   gem "factory_girl_rails"
   gem "database_cleaner"
   gem "email_spec"
-  gem "cucumber-rails", :require => false
   gem "capybara"
+  gem 'launchy'
+  gem 'faker'
+  gem "selenium-webdriver"
+  gem "shoulda-matchers"
+  gem 'guard-rspec'
+  gem 'guard-livereload'
 end
 
 gem 'pg'

@@ -22,4 +22,8 @@
         = f.text_field :user_email, placeholder: "Email"
 
       = f.hidden_field :club_id, value: @club.id
+      = f.hidden_field :inviter_user_id, value: current_user.id
+
       .actions= f.submit "Invite"
+
+= link_to "Back", club_path(@club)

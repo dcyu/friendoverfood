@@ -18,8 +18,4 @@
   .field
     = f.password_field :password_confirmation, placeholder: "Confirm Password"
 
-  %p Clubs
-  - @user.clubs.each do|c|
-    %a{:href => "#{club_path(c)}"} 
-      = c.name
   .actions= f.submit

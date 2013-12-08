@@ -9,7 +9,9 @@
   .field
     = f.text_field :name, placeholder: "Club Name"
   .field
-    = f.text_area :description, placeholder: "Club Description", class: "text"
+    = f.text_area :description, placeholder: "Short Club Description", class: "text"
+    %label{:for => "description"} 
+      *Maximum 200 characters
 
   .actions
     = f.submit 'Save'

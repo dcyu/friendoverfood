@@ -34,12 +34,12 @@
         %ul.l-header-nav.is-right
           - if current_user
             %li 
-              = link_to "#{current_user.first_name.downcase}", user_path(current_user.id)
+              = link_to "#{current_user.first_name.downcase}", user_path(current_user.id), class: 't-orange'
             %li
               = link_to "sign out", sign_out_path
           - elsif current_admin
             %li 
-              = link_to "admin", admin_path(current_admin.id)
+              = link_to "admin", admin_path(current_admin.id), class: 't-orange'
             %li 
               = link_to "sign out", sign_out_path
           - else

@@ -6,11 +6,13 @@
 
 %h2 Club Admins
 
-%p Admins are still a part of the lunch pool.
-
 - @club.memberships.where(is_admin: true).each do |m|
   %p.club-member 
-    %strong= m.user.first_name + ' ' + m.user.last_name
+    %strong
+      = m.user.first_name + ' ' + m.user.last_name
+    %span 
+      \|
+    = link_to 'Remove', membership_path(m), method: :delete
 
 %h2 Club Members
 
@@ -24,7 +26,6 @@
     %span 
       \|
     = link_to "Make Admin", make_admin_membership_path(m), method: :post
-
 
 %br/ 
 %br/ 
@@ -54,4 +55,4 @@
 \|
 = link_to 'Edit', edit_club_path(@club)
 \|
-= link_to 'All Clubs', clubs_path
+= link_to 'Back', clubs_path

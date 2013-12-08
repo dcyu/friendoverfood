@@ -12,7 +12,7 @@ class MembershipsController < ApplicationController
     @club = @membership.club
     @membership.destroy
 
-    flash[:notice] = "#{@membership.user.first_name} #{@membership.user.last_name} removed from #{@club.name}"
+    flash[:notice] = "#{@membership.user.first_name} #{@membership.user.last_name} has been removed from #{@club.name}"
 
     redirect_to @club
   end
