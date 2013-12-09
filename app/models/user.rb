@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   has_many :pending_memberships
   accepts_nested_attributes_for :pending_memberships
-  validates_presence_of :pending_memberships, on: :create
+  # validates_presence_of :pending_memberships, on: :create
 
 
   has_many :memberships

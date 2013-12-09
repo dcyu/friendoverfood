@@ -60,25 +60,34 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     authorize! :manage, @user
-
   end
 
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(params[:user])
 
-    respond_to do |format|
-      if @user.save
-        UserMailer.admin_verification(@user).deliver
-        UserMailer.welcome(@user).deliver
-        session[:user_id] = @user.id
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render json: @user, status: :created, location: @user }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    @pending_membership = PendingMembership.new(club_id: params[:user][:pending_membership][:club_id])
+
+    params[:user].delete("pending_membership")
+
+    @user = User.new(params[:user])
+    # needed for render 'new' in case of form errors 
+    @user.pending_memberships.build
+
+
+    if @user.save
+      @pending_membership.user_id = @user.id 
+      @pending_membership.user_first_name = @user.first_name
+      @pending_membership.user_last_name = @user.last_name
+      @pending_membership.user_email = @user.email
+      @pending_membership.save
+      UserMailer.admin_verification(@user).deliver
+      UserMailer.welcome(@user).deliver
+      session[:user_id] = @user.id
+      
+      redirect_to @user, notice: 'User was successfully created.' 
+    else
+      render action: "new"
     end
   end
 

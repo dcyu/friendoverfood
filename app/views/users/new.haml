@@ -18,7 +18,7 @@
         = f.text_field :last_name, placeholder: "Last Name"
 
       .field
-        = f.fields_for :pending_memberships do |m|
+        = f.fields_for @user.pending_memberships do |m|
           = m.label :club_id, "Select your club."
           = m.collection_select :club_id, Club.all, :id, :name
       / .field
