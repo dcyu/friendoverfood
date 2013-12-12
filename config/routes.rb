@@ -1,4 +1,4 @@
-BallerLunch::Application.routes.draw do
+FriendOverFood::Application.routes.draw do
 
   resources :clubs do
     member do
@@ -7,7 +7,6 @@ BallerLunch::Application.routes.draw do
       post 'deny_membership'
     end
   end
-
 
   resources :admins do
     member do

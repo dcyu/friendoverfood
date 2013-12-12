@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :admin do
-    email "admin@ballerlunch.com"
+    email "admin@friendoverfood.com"
     password "password"
     password "password_confirmation"
   end

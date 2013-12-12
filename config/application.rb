@@ -10,7 +10,7 @@ if defined?(Bundler)
 end
 
 
-module BallerLunch
+module FriendOverFood
   class Application < Rails::Application
 
   # don't generate RSpec tests for views and helpers

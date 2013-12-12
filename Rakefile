@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-BallerLunch::Application.load_tasks
+FriendOverFood::Application.load_tasks

@@ -3,7 +3,7 @@
   %head
     %title Friend Over Food
     %meta{:content => "Friend Over Food", :property => "og:title"}
-    %meta{:content => "http://www.friendoverlunch.com/", :property => "og:url"}
+    %meta{:content => "http://www.friendoverfood.com/", :property => "og:url"}
     %meta{:content => "#{root_url[0...-1]}#{image_path("og.png")}", :property => "og:image"}
     %meta{:content => "Friend Over Food", :property => "og:site_name"}
     %meta{:content => "Friend Over Food", :property => "og:description"}
@@ -15,7 +15,7 @@
     %meta{:content => "Friend Over Food", :name => "description"}
     %meta{:content => "", :name => "keywords"}
     %meta{:name => "mode"}/
-    %meta{:content => "friendoverlunch", :name => "permalink"}/
+    %meta{:content => "friendoverfood", :name => "permalink"}/
     %link{:href => "http://fonts.googleapis.com/css?family=Josefin+Slab:400,700", :rel => "stylesheet", :type => "text/css"}/
     %link{:href => "http://fonts.googleapis.com/css?family=Raleway:400,700", :rel => "stylesheet", :type => "text/css"}/
     = favicon_link_tag 'fav.png'
@@ -53,6 +53,8 @@
             %a{:href => "#{faq_path}"} faq
           %li 
             %a{:href => "#{about_path}"} about
+  
+
     .l-container.is-ta-center
       - if flash[:notice]
         %p#notice= flash[:notice]
@@ -70,6 +72,6 @@
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-45975377-1', 'friendoverlunch.com');
+  ga('create', 'UA-45975377-1', 'friendoverfood.com');
   ga('send', 'pageview');
 
