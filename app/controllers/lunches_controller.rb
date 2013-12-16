@@ -12,8 +12,8 @@ class LunchesController < ApplicationController
       @open_lunch = Lunch.where(luncher_id: nil, user_id: new_lunch_partners.first.id).first
       @open_lunch.luncher_id = current_user.id
       @open_lunch.save
-      UserMailer.new_lunch_user(@open_lunch).deliver
-      UserMailer.new_lunch_luncher(@open_lunch).deliver
+      LunchMailer.new_lunch_user(@open_lunch).deliver
+      LunchMailer.new_lunch_luncher(@open_lunch).deliver
       redirect_to "/users/#{current_user.id}/lunch_confirmation"
     end
 

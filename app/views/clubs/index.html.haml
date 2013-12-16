@@ -13,7 +13,8 @@
           %a{:href => "#{club_path(club.id)}"} 
             = club.name
       %td= club.description
-      %td= link_to 'Join', join_club_path(club), method: :post
+      - if current_user.clubs.include? @club == false
+        %td= link_to 'Join', join_club_path(club), method: :post
       %td= link_to 'Details', club
       / # %td= link_to 'Edit', edit_club_path(club)
       / # %td= link_to 'Destroy', club, :method => :delete, :data => { :confirm => 'Are you sure?' }

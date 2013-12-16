@@ -4,6 +4,8 @@
 %p 
   = @club.description
 
+%a{:href => "#"} Leave Club
+
 %h2 Club Admins
 
 - @club.memberships.where(is_admin: true).each do |m|
@@ -51,8 +53,10 @@
 
 %br/ 
 %br/ 
-= link_to 'Join', join_club_path(@club), method: :post
-\|
+
+- if current_user.clubs.include? @club == false
+  = link_to 'Join', join_club_path(@club), method: :post
+  \|
 = link_to 'Edit', edit_club_path(@club)
 \|
 = link_to 'Back', clubs_path

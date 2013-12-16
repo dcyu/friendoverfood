@@ -20,24 +20,6 @@ class UserMailer < ActionMailer::Base
     mail(to: @user.email, subject: "You're Verified!")
   end
 
-  def new_lunch_user(lunch)
-    @url = "http://www.friendoverfood.com/sign_in"
-    @lunch = lunch
-    @user = @lunch.user
-    @luncher = User.find(@lunch.luncher_id)
-    @club = Club.find(@lunch.club_id)
-    mail(to: @user.email, subject: "Meet #{@luncher.first_name} from #{@club.name}", reply_to: @luncher.email)
-  end
-
-  def new_lunch_luncher(lunch)
-    @url = "http://www.friendoverfood.com/sign_in"
-    @lunch = lunch
-    @user = @lunch.user
-    @luncher = User.find(@lunch.luncher_id)
-    @club = Club.find(@lunch.club_id)
-    mail(to: @luncher.email, subject: "Meet #{@user.first_name} from #{@club.name}", reply_to: @user.email)
-  end
-
   def invitation(pending_membership)
     @url = "http://www.friendoverfood.com"
     @sign_up_url = "http://www.friendoverfood.com/sign_in"
