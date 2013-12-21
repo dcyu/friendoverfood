@@ -71,9 +71,6 @@ class UsersController < ApplicationController
     params[:user].delete("pending_membership")
 
     @user = User.new(params[:user])
-    # needed for render 'new' in case of form errors 
-    @user.pending_memberships.build
-
 
     if @user.save
       @pending_membership.user_id = @user.id 
@@ -87,6 +84,8 @@ class UsersController < ApplicationController
       
       redirect_to @user, notice: 'User was successfully created.' 
     else
+      # needed for render 'new' in case of form errors 
+      @user.pending_memberships.build
       render action: "new"
     end
   end

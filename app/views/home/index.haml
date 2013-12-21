@@ -1,9 +1,16 @@
-.l-background-image.home
+.center-box
+  = image_tag "cafe.png", class: "cafe-img"
 
-%article.l-article.home
-  %h1.title.is-ta-center Welcome to Friend Over Food
+%article.l-article.home.is-ta-center
+  
+  .stripe
+  
+  .feature-box
+    %h2 
+      GET TO KNOW PEOPLE 
+      IN YOUR GROUPS
 
-  %h2.subtitle.is-ta-center Get to know people in your groups
+    - unless (current_user) || (current_admin)
+      %a.call-to-action.submit{:href => "#{sign_in_path}"} Find a new lunch! 
 
-  - unless (current_user) || (current_admin)
-    %a.call-to-action.submit{:href => "#{sign_in_path}"} Find a new lunch! 
+

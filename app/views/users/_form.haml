@@ -17,5 +17,7 @@
     = f.password_field :password, placeholder: "Password"
   .field
     = f.password_field :password_confirmation, placeholder: "Confirm Password"
-
-  .actions= f.submit
+  - if params[:action] == "edit"
+    .actions= f.submit "Update Info"
+  -else
+    .actions= f.submit

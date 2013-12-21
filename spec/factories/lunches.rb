@@ -2,5 +2,7 @@
 
 FactoryGirl.define do
   factory :lunch do
+    user
+    club
   end
 end

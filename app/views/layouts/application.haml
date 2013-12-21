@@ -54,12 +54,19 @@
           %li 
             %a{:href => "#{about_path}"} about
   
-
-    .l-container.is-ta-center
+    
+    - if params[:controller] == "home" && params[:action] == "index"
       - if flash[:notice]
         %p#notice= flash[:notice]
 
       = yield
+      
+    -else
+      .l-container.is-ta-center
+        - if flash[:notice]
+          %p#notice= flash[:notice]
+
+        = yield
     
     %footer.l-footer 
       %p 
