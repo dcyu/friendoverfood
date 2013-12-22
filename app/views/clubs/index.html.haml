@@ -15,11 +15,11 @@
       %td= club.description
       - if current_user.clubs.include? @club == false
         %td= link_to 'Join', join_club_path(club), method: :post
-      %td= link_to 'Details', club
+      %td= link_to 'More Info', club
       / # %td= link_to 'Edit', edit_club_path(club)
       / # %td= link_to 'Destroy', club, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-%strong 
-  = link_to 'Create New Club', new_club_path
+%p 
+  = link_to 'Create New Club', new_club_path, class: "submit"

@@ -7,11 +7,14 @@ class UserMailer < ActionMailer::Base
     mail(to: @user.email, subject: 'Welcome to Friend Over Food!')
   end
 
-  def admin_verification(user)
-    @user = user
-    mail(to: "dcyu93@gmail.com", subject: 'New Friend Over Food User')
-    @url  = "http://www.friendoverfood.com/sign_in"
-
+  def admin_verification(membership)
+    @pending_membership = membership
+    @pending_member = @pending_membership.user
+    @club = @pending_membership.club
+    @admins = Membership.where(club_id: @club, is_admin: true).map{|m| m.user}
+    mail(to: @admins.map{|a| a.email}, subject: "#{@club.name} Membership Request")
+    # mail(to: Proc.new {@admins.map{|a| a.email}}, subject: "#{@club.name} Membership Request")
+    @url = "http://www.friendoverfood.com/sign_in"
   end
 
   def verified_user(user)

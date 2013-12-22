@@ -4,7 +4,12 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h3><%= @user.first_name %> <%= @user.last_name %> just signed up for Friend Over Food.</h3>
+    <p>Hello!</p>
+
+    <p><strong><%= @pending_member.first_name %> <%= @pending_member.last_name %></strong> would like to join <%= @club.name %>. Please <a href="<%= @url %>">sign in</a> to approve or deny their request.</p>
+
+    <p>Cheers,</p> 
+    <p>Friend Over Food</p>
 
   </body>
 </html>

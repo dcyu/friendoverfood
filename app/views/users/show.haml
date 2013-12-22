@@ -1,18 +1,23 @@
-%h1.is-ta-center 
-  Hi
-  = @user.first_name
+.profile.is-left
 
-- if (Lunch.where(luncher_id: nil, user_id: @user.id).length >= @user.clubs.length)
-  %p 
-    There are no new people in your clubs to lunch with.
-- else
-  %p
-    There are still people that you haven't lunched with yet!
+  %h1.is-ta-left 
+    = @user.first_name
+    = @user.last_name
 
-    = link_to "Find a new lunch!", lunches_path, class: "submit", :method => :post
+  - if (Lunch.where(luncher_id: nil, user_id: @user.id).length >= @user.clubs.length)
+    %p 
+      There are no new people in your clubs to lunch with.
+  - else
+    %p
+      There are still people that you haven't lunched with yet!
 
-.clubs-list
-  %h2 YOUR CLUBS
+      = link_to "Find a new lunch!", lunches_path, class: "is-ta-center submit", :method => :post
+
+  %a.is-block.is-ta-center{:href => "#{edit_user_path(@user)}"} 
+    Edit your profile info.
+
+.clubs-list.is-left
+  %h2 Your Clubs 
   - if @user.clubs.length == 0
     %p Your club registration is currently being verified.
   - else
@@ -22,8 +27,7 @@
           = c.name
   
   %br/ 
-  %p 
-    %a.is-inline-block{:href => "#{clubs_path}"} Join more clubs!
+  %p.is-ta-center 
+    %a.is-inline-block.is-ta-center.submit{:href => "#{clubs_path}"} Join more clubs
 
-%a.is-right{:href => "#{edit_user_path(@user)}"} 
-  Edit your info.
+

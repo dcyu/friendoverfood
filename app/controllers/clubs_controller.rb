@@ -56,6 +56,11 @@ class ClubsController < ApplicationController
     @club = Club.find(params[:id])
     @current_user_membership = Membership.where(club_id: @club, user_id: current_user).first
 
+    if current_user.clubs.include? @club && @current_user_membership.is_admin == true
+      authorize! :manage, @club
+    else
+      authorize! :read, @club
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @club }

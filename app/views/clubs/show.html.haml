@@ -1,62 +1,71 @@
-%h1 
-  = @club.name
+.profile.is-left
 
-%p 
-  = @club.description
+  %h1 
+    = @club.name
 
-%a{:href => "#"} Leave Club
+  %p 
+    = @club.description
 
-%h2 Club Admins
+  %span.is-block.is-ta-center
+    = link_to 'Back to Clubs List', clubs_path, class: "is-inline-block"
 
-- @club.memberships.where(is_admin: true).each do |m|
-  %p.club-member 
-    %strong
-      = m.user.first_name + ' ' + m.user.last_name
-    %span 
+    -if can? :update, @club
       \|
-    = link_to 'Remove', membership_path(m), method: :delete
+      = link_to 'Edit Club Description', edit_club_path(@club), class: "is-inline-block"
 
-%h2 Club Members
-
-- @club.memberships.where(is_admin: nil).each do |m|
-  %p.club-member 
-    %strong
-      = m.user.first_name + ' ' + m.user.last_name
-    %span 
+    - if Membership.where(club_id: @club, user_id: current_user.id).first != nil
       \|
-    = link_to 'Remove', membership_path(m), method: :delete
-    %span 
-      \|
-    = link_to "Make Admin", make_admin_membership_path(m), method: :post
+      = link_to "Leave #{@club.name}", Membership.where(club_id: @club, user_id: current_user.id).first, method: :delete, data: { confirm: "Are you sure you want to leave #{@club.name}?" }, class: "is-inline-block"
 
-%br/ 
-%br/ 
+.clubs-list.is-left
 
-%p 
-  = link_to "Invite people to join #{@club.name}", new_pending_membership_path(:club => @club.id), class: "t-bold"
+  %h2 Club Admins
 
-- if @current_user_membership != nil && @current_user_membership.is_admin == true && @club.pending_memberships.length > 0
-
-  %h2 Pending Members
-
-  - @club.pending_memberships.each do |p|
+  - @club.memberships.where(is_admin: true).each do |m|
     %p.club-member 
       %strong
-        = p.user_first_name + ' ' + p.user_last_name
-      %span 
-        \|
-      = link_to 'Approve Membership', approve_membership_club_path(p), method: :post
-      %span 
-        \|
-      = link_to 'Deny Membership', deny_membership_club_path(p), method: :post
+        = m.user.first_name + ' ' + m.user.last_name
+      -if can? :manage, @club
+        %span 
+          \|
+        = link_to 'Remove', membership_path(m), method: :delete
+
+  %h2 Club Members
+
+  - @club.memberships.where(is_admin: nil).each do |m|
+    %p.club-member 
+      %strong
+        = m.user.first_name + ' ' + m.user.last_name
+      -if can? :manage, @club
+        %span 
+          \|
+        = link_to 'Remove', membership_path(m), method: :delete
+        
+        %span 
+          \|
+        = link_to "Make Admin", make_admin_membership_path(m), method: :post
 
 
-%br/ 
-%br/ 
+  -if can? :manage, @club
+    %h2 Pending Members
 
-- if current_user.clubs.include? @club == false
-  = link_to 'Join', join_club_path(@club), method: :post
-  \|
-= link_to 'Edit', edit_club_path(@club)
-\|
-= link_to 'Back', clubs_path
+    - @club.pending_memberships.each do |p|
+      %p.club-member 
+        %strong
+          = p.user_first_name + ' ' + p.user_last_name
+        %span 
+          \|
+        = link_to 'Approve Membership', approve_membership_club_path(p), method: :post
+        %span 
+          \|
+        = link_to 'Deny Membership', deny_membership_club_path(p), method: :post
+
+  %p.is-block.is-ta-center 
+    = link_to "Invite people to join #{@club.name}", new_pending_membership_path(:club => @club.id), class: "is-ta-center is-inline-block submit"
+
+
+  %br/ 
+  %br/ 
+
+  - if current_user.clubs.include? @club == false
+    = link_to 'Join', join_club_path(@club), method: :post

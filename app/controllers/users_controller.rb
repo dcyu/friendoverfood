@@ -78,7 +78,7 @@ class UsersController < ApplicationController
       @pending_membership.user_last_name = @user.last_name
       @pending_membership.user_email = @user.email
       @pending_membership.save
-      UserMailer.admin_verification(@user).deliver
+      UserMailer.admin_verification(@pending_membership).deliver
       UserMailer.welcome(@user).deliver
       session[:user_id] = @user.id
       
