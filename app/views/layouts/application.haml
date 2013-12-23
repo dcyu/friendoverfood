@@ -57,14 +57,14 @@
     
     - if params[:controller] == "home" && params[:action] == "index" || params[:action] == "show"
       - if flash[:notice]
-        %p#notice= flash[:notice]
+        %p#notice.is-ta-center= flash[:notice]
 
       = yield
       
     -else
       .l-container.is-ta-center
         - if flash[:notice]
-          %p#notice= flash[:notice]
+          %p#notice.is-ta-center= flash[:notice]
 
         = yield
     
