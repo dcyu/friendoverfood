@@ -8,5 +8,6 @@ class Club < ActiveRecord::Base
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
 
+  validates_presence_of :name
   validates :description, :length => { :maximum => 200 }
 end

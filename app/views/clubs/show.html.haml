@@ -11,10 +11,13 @@
 
     -if can? :update, @club
       \|
-      = link_to 'Edit Club Description', edit_club_path(@club), class: "is-inline-block"
+      = link_to 'Edit Description', edit_club_path(@club), class: "is-inline-block"
+      \|
+      = link_to 'Delete Club', @club, method: :delete, data: { confirm: 'Are you sure?' }
+
 
     - if Membership.where(club_id: @club, user_id: current_user.id).first != nil
-      \|
+      %p.clear
       = link_to "Leave #{@club.name}", Membership.where(club_id: @club, user_id: current_user.id).first, method: :delete, data: { confirm: "Are you sure you want to leave #{@club.name}?" }, class: "is-inline-block"
 
 .clubs-list.is-left

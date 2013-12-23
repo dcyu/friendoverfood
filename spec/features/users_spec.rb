@@ -2,7 +2,6 @@ require "spec_helper"
 
 feature "User Actions" do
 
-
   feature "user sign up" do
     given(:create_club) {
       @club = FactoryGirl.create(:club)
@@ -76,32 +75,23 @@ feature "User Actions" do
   end
 
   scenario "signs in user" do
-    user = FactoryGirl.create(:user)
-    log_in user
-    expect(current_path).to eq user_path(user.id)
+    log_in
+    expect(current_path).to eq user_path(@current_user.id)
   end
 
   scenario "user can edit their personal info" do
-    user = FactoryGirl.create(:user)
-    log_in user
-    visit edit_user_path(user)
+    log_in
+    visit edit_user_path(@current_user)
     fill_in 'user_first_name', with: "John" 
     fill_in 'user_last_name', with: "Smith"
     fill_in 'user_email', with: "johnsmith@johnsmith.com"
     fill_in 'user_password', with: "abc123"
     fill_in 'user_password_confirmation', with: "abc123"
     find(".actions").click_button 'Update Info'
-    expect(current_path).to eq user_path(user.id)
-    updated_user = User.find(user.id)
+    expect(current_path).to eq user_path(@current_user.id)
+    updated_user = User.find(@current_user.id)
     expect(updated_user.first_name).to eq "John"
     expect(updated_user.last_name).to eq "Smith"
   end
-
-  scenario "create a new club" do
-  end
-
-  scenario "request to join existing club" do
-  end
-
 
 end
