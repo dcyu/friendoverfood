@@ -36,7 +36,7 @@ group :test do
 end
 
 gem 'pg'
-
+gem 'figaro'
 gem 'haml-rails'
 
 
