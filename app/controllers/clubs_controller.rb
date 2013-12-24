@@ -11,12 +11,14 @@ class ClubsController < ApplicationController
 
     if m.save
       @pm.destroy
+      UserMailer.verified_membership(@pm).deliver
       redirect_to club_path(@club)
     end
   end
 
   def deny_membership
     @pm = PendingMembership.find(params[:id])
+    @club = @pm.club
     @pm.destroy
     redirect_to club_path(@club)
   end
@@ -33,6 +35,7 @@ class ClubsController < ApplicationController
       m.user_email = current_user.email
       m.club_id = @club.id
       m.save
+      UserMailer.admin_verification(m).deliver
       flash[:notice] = "Request to join #{@club.name} submitted. You'll be notified once your request is approved."
       redirect_to user_path(current_user.id)
     else
@@ -56,8 +59,10 @@ class ClubsController < ApplicationController
     @club = Club.find(params[:id])
     @current_user_membership = Membership.where(club_id: @club, user_id: current_user).first
 
-    if current_user.clubs.include? @club && @current_user_membership.is_admin == true
-      authorize! :manage, @club
+    if current_user.clubs.include? @club
+      if @current_user_membership.is_admin == true
+        authorize! :manage, @club
+      end
     else
       authorize! :read, @club
     end

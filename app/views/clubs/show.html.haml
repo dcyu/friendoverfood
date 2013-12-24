@@ -33,42 +33,48 @@
           \|
         = link_to 'Remove', membership_path(m), method: :delete
 
-  %h2 Club Members
+  - if @club.memberships.where(is_admin: nil).length > 0
+    %h2 Club Members
 
-  - @club.memberships.where(is_admin: nil).each do |m|
-    %p.club-member 
-      %strong
-        = m.user.first_name + ' ' + m.user.last_name
-      -if can? :manage, @club
-        %span 
-          \|
-        = link_to 'Remove', membership_path(m), method: :delete
-        
-        %span 
-          \|
-        = link_to "Make Admin", make_admin_membership_path(m), method: :post
+    - @club.memberships.where(is_admin: nil).each do |m|
+      %p.club-member 
+        %strong
+          = m.user.first_name + ' ' + m.user.last_name
+        -if can? :manage, @club
+          %span 
+            \|
+          = link_to 'Remove', membership_path(m), method: :delete
+          
+          %span 
+            \|
+          = link_to "Make Admin", make_admin_membership_path(m), method: :post
 
 
   -if can? :manage, @club
-    %h2 Pending Members
+    -if @club.pending_memberships.length > 0
+      %h2 Pending Members
 
-    - @club.pending_memberships.each do |p|
-      %p.club-member 
-        %strong
-          = p.user_first_name + ' ' + p.user_last_name
-        %span 
-          \|
-        = link_to 'Approve Membership', approve_membership_club_path(p), method: :post
-        %span 
-          \|
-        = link_to 'Deny Membership', deny_membership_club_path(p), method: :post
+      - @club.pending_memberships.each do |p|
+        %p.club-member 
+          %strong
+            = p.user_first_name + ' ' + p.user_last_name
+          %span 
+            \|
+          = link_to 'Approve Membership', approve_membership_club_path(p), method: :post
+          %span 
+            \|
+          = link_to 'Deny Membership', deny_membership_club_path(p), method: :post
 
   %p.is-block.is-ta-center 
-    = link_to "Invite people to join #{@club.name}", new_pending_membership_path(:club => @club.id), class: "is-ta-center is-inline-block submit"
+    - if current_user.clubs.include? @club
+
+      = link_to "Invite people to join #{@club.name}", new_pending_membership_path(:club => @club.id), class: "is-ta-center is-inline-block submit"
+    - else 
+      / join club link
 
 
   %br/ 
   %br/ 
 
-  - if current_user.clubs.include? @club == false
-    = link_to 'Join', join_club_path(@club), method: :post
+  - unless current_user.clubs.include? @club
+    = link_to "Join #{@club.name}", join_club_path(@club), method: :post, class: "is-ta-center is-inline-block submit"

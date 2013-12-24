@@ -17,8 +17,9 @@ class UserMailer < ActionMailer::Base
     @url = "http://www.friendoverfood.com/sign_in"
   end
 
-  def verified_user(user)
-    @user = user
+  def verified_membership(membership)
+    @user = membership.user
+    @club = membership.club
     @url = "http://www.friendoverfood.com/sign_in"
     mail(to: @user.email, subject: "You're Verified!")
   end
