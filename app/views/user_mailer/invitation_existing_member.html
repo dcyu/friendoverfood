@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Hi <%= @new_member.first_name %>!</p>
+
+    <p>You've been invited by <strong><%= @inviter.first_name %> <%= @inviter.last_name %></strong> to join the <strong><%= @club.name %></strong> club on <a href="<%= @url %>">Friend Over Food</a>.</p>
+
+    <p>Friend Over Food is a platform that allows users to connect with others in their groups through an automated matching system. <%= @inviter.first_name %> is using Friend Over Food to help strengthen the community within <%= @club.name %> and connect you to members you might not know as well.</p>
+
+    <p>To join <%= @club.name %> all you have to do is <a href="<%= @sign_up_url %>">sign up</a> with this email address and you'll be ready to meet other people in the group. Have fun!</p>
+    <br>
+    <p>Cheers,</p> 
+    <p>Friend Over Food Team</p>
+
+  </body>
+</html>

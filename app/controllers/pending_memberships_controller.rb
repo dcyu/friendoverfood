@@ -13,10 +13,12 @@ class PendingMembershipsController < ApplicationController
       @membership.user_id = @invited_user
       @membership.club_id = @pending_membership.club_id
       @membership.save
+      UserMailer.invitation_existing_member(@membership).deliver
       flash[:notice] = "#{@invited_user.first_name} #{@invited_user.last_name} added to #{@membership.club.name}"
       redirect_to new_pending_membership_path(:club => @membership.club.id)
     else
       if @pending_membership.save
+        UserMailer.invitation(@pending_membership).deliver
         flash[:notice] = "#{@pending_membership.user_first_name} #{@pending_membership.user_last_name} has been invited to join #{@pending_membership.club.name} and Friend Over Food."
         redirect_to new_pending_membership_path(:club => @pending_membership.club_id)
       else

@@ -1,5 +1,5 @@
 class PendingMembership < ActiveRecord::Base
-  attr_accessible :user_id, :club_id, :user_first_name, :user_last_name, :user_email
+  attr_accessible :user_id, :club_id, :user_first_name, :user_last_name, :user_email, :inviter_user_id
 
 
   # validates_presence_of :user_email

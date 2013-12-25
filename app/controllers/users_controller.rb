@@ -71,8 +71,18 @@ class UsersController < ApplicationController
     params[:user].delete("pending_membership")
 
     @user = User.new(params[:user])
+    @possible_memberships = PendingMembership.where(user_email: @user.email)
 
-    if @user.save
+    if @possible_memberships.length > 0 && @user.save
+      new_user = User.last
+      @membership = Membership.new
+      @membership.user_id = new_user.id
+      @membership.club_id = @possible_memberships.first.club_id
+      @possible_memberships.first.destroy
+      @membership.save
+      session[:user_id] = @user.id
+      redirect_to @user, notice: 'Account and membership successfuly created.'
+    elsif @user.save
       @pending_membership.user_id = @user.id 
       @pending_membership.user_first_name = @user.first_name
       @pending_membership.user_last_name = @user.last_name
@@ -81,8 +91,7 @@ class UsersController < ApplicationController
       UserMailer.admin_verification(@pending_membership).deliver
       UserMailer.welcome(@user).deliver
       session[:user_id] = @user.id
-      
-      redirect_to @user, notice: 'User was successfully created.' 
+      redirect_to @user, notice: 'Account successfuly created.' 
     else
       # needed for render 'new' in case of form errors 
       @user.pending_memberships.build

@@ -8,12 +8,12 @@ class User < ActiveRecord::Base
   has_many :inverse_lunches, class_name: "Lunch", foreign_key: "luncher_id"
   has_many :inverse_lunchers, through: :inverse_lunches, source: :user
 
-  has_many :pending_memberships
+  has_many :pending_memberships, dependent: :destroy
   accepts_nested_attributes_for :pending_memberships
   # validates_presence_of :pending_memberships, on: :create
 
 
-  has_many :memberships
+  has_many :memberships, dependent: :destroy
   has_many :clubs, through: :memberships
   accepts_nested_attributes_for :memberships
 

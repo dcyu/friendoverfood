@@ -26,10 +26,20 @@ class UserMailer < ActionMailer::Base
 
   def invitation(pending_membership)
     @url = "http://www.friendoverfood.com"
-    @sign_up_url = "http://www.friendoverfood.com/sign_in"
+    @sign_up_url = "http://www.friendoverfood.com/sign_up"
     @pending_membership = pending_membership
     @inviter = User.find(@pending_membership.inviter_user_id)
     @club = Club.find(@pending_membership.club_id)
+    mail(to: @pending_membership.user_email, subject: "You've been invited to join #{@club.name}!")
+  end
+
+  def invitation_existing_member(membership)
+    @new_member = membership.user
+    @url = "http://www.friendoverfood.com"
+    @sign_up_url = "http://www.friendoverfood.com/sign_in"
+    @inviter = User.find(membership.inviter_user_id)
+    @club = Club.find(membership.club_id)
+    mail(to: @new_membership.email, subject: "You've been added to #{@club.name}!")
   end
 
 
