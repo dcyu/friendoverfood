@@ -51,10 +51,10 @@
 
 
   -if can? :manage, @club
-    -if @club.pending_memberships.length > 0
+    -if @club.pending_memberships.where(PendingMembership.arel_table[:user_id].not_eq(nil)).length > 0
       %h2 Pending Members
 
-      - @club.pending_memberships.each do |p|
+      - @club.pending_memberships.where(PendingMembership.arel_table[:user_id].not_eq(nil)).each do |p|
         %p.club-member 
           %strong
             = p.user_first_name + ' ' + p.user_last_name

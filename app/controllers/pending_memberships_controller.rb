@@ -10,10 +10,10 @@ class PendingMembershipsController < ApplicationController
     @invited_user = User.where(email: @pending_membership.user_email).first
 
     if @invited_user
-      @membership.user_id = @invited_user
+      @membership.user_id = @invited_user.id
       @membership.club_id = @pending_membership.club_id
       @membership.save
-      UserMailer.invitation_existing_member(@membership).deliver
+      UserMailer.invitation_existing_member(@pending_membership).deliver
       flash[:notice] = "#{@invited_user.first_name} #{@invited_user.last_name} added to #{@membership.club.name}"
       redirect_to new_pending_membership_path(:club => @membership.club.id)
     else
